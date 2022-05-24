@@ -5,7 +5,7 @@ import './home.scss';
 const Home = () => {
   const [subwayStationNumber, setSubwayStationNumber] = useState([]);
 
-	// Récupération du numéro des stations
+	// Récupération du numéro des stations de métro depuis l'API
   useEffect(() => {
 		const getSubwayStationNumbers = async () => {
 			try {
@@ -20,7 +20,9 @@ const Home = () => {
 		getSubwayStationNumbers();
 	}, []);
 
-  console.log(subwayStationNumber);
+  // Map des numéros de stations de métro pour ne récupérer que les nombres
+  const mapSubwayNames = subwayStationNumber.map(subwayName => subwayName.code);
+  const filterOnlySubwayNumbers = mapSubwayNames.filter(Number);
 
 	return (
 		<div className="home">
