@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import ErrorCard from '../components/errorCard/ErrorCard';
 import ScheduleCardsWayA from '../components/scheduleCardsWayA/ScheduleCardsWayA';
 import ScheduleCardsWayR from '../components/scheduleCardsWayR/ScheduleCardsWayR';
 import './home.scss';
@@ -12,6 +13,8 @@ const Home = () => {
 	const [viewableOption, setViewableOption] = useState(false);
 	const [schedulesWayA, setSchedulesWayA] = useState([]);
   const [schedulesWayR, setSchedulesWayR] = useState([]);
+  const [errorWayA, setErrorWayA] = useState(false);
+  const [errorWayR, setErrorWayR] = useState(false);
 
 	// Récupération du numéro des stations de métro depuis l'API
 	useEffect(() => {
@@ -77,7 +80,9 @@ const Home = () => {
 						`https://api-ratp.pierre-grimaud.fr/v4/schedules/metros/${uniqueStationNumber}/${uniqueStationName}/A`,
 					);
 					setSchedulesWayA(data.result.schedules);
+          setErrorWayA(false);
 				} catch (err) {
+          setErrorWayA(true);
 					console.log(err);
 				}
 			};
@@ -94,7 +99,9 @@ const Home = () => {
 						`https://api-ratp.pierre-grimaud.fr/v4/schedules/metros/${uniqueStationNumber}/${uniqueStationName}/R`,
 					);
 					setSchedulesWayR(data.result.schedules);
+          setErrorWayR(false);
 				} catch (err) {
+          setErrorWayR(true);
 					console.log(err);
 				}
 			}
@@ -134,20 +141,32 @@ const Home = () => {
 					</form>
 					<div className="results">
 						<p>Résultats</p>
-						{schedulesWayA?.map(scheduleWayA => (
-							<ScheduleCardsWayA
-								key={scheduleWayA.message}
-								scheduleWayA={scheduleWayA}
-								className="scheduleCards"
-							/>
-						))}
-						{schedulesWayR?.map(scheduleWayR => (
-							<ScheduleCardsWayR
-								key={scheduleWayR.message}
-								scheduleWayR={scheduleWayR}
-								className="scheduleCards"
-							/>
-						))}
+						{errorWayA ? (
+							<ErrorCard className="scheduleCards error" />
+						) : (
+							<>
+								{schedulesWayA?.map(scheduleWayA => (
+									<ScheduleCardsWayA
+										key={scheduleWayA.message}
+										scheduleWayA={scheduleWayA}
+										className="scheduleCards"
+									/>
+								))}
+							</>
+						)}
+						{errorWayR ? (
+							<ErrorCard className="scheduleCards error" />
+						) : (
+							<>
+								{schedulesWayR?.map(scheduleWayR => (
+									<ScheduleCardsWayR
+										key={scheduleWayR.message}
+										scheduleWayR={scheduleWayR}
+										className="scheduleCards"
+									/>
+								))}
+							</>
+						)}
 					</div>
 				</div>
 			</div>
