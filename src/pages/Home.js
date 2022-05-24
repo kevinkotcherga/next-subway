@@ -5,9 +5,10 @@ import './home.scss';
 const Home = () => {
 	const [subwayStationNumber, setSubwayStationNumber] = useState([]);
 	const [uniqueStationNumber, setUniqueStationNumber] = useState('default');
-  const [uniqueStationName, setUniqueStationName] = useState('default');
+	const [uniqueStationName, setUniqueStationName] = useState('default');
 	const [allStationNames, setAllStationNames] = useState([]);
 	const [viewableOption, setViewableOption] = useState(false);
+  const [schedulesWayA, setSchedulesWayA] = useState([]);
 
 	// Récupération du numéro des stations de métro depuis l'API
 	useEffect(() => {
@@ -61,6 +62,23 @@ const Home = () => {
 			console.log(err);
 		}
 	};
+
+	// Recupération des horraires d'une station way A
+	useEffect(() => {
+		const getSchedulesWayA = async () => {
+			if (uniqueStationName !== 'default') {
+				try {
+					const { data } = await axios.get(
+						`https://api-ratp.pierre-grimaud.fr/v4/schedules/metros/${uniqueStationNumber}/${uniqueStationName}/A`,
+					);
+					setSchedulesWayA(data.result.schedules);
+				} catch (err) {
+					console.log(err);
+				}
+			}
+		};
+		getSchedulesWayA();
+	}, [uniqueStationName]);
 
 	return (
 		<div className="home">
