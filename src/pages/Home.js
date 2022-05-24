@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ScheduleCardsWayA from '../components/scheduleCardsWayA/ScheduleCardsWayA';
+import ScheduleCardsWayR from '../components/scheduleCardsWayR/ScheduleCardsWayR';
 import './home.scss';
 
 const Home = () => {
@@ -129,6 +130,12 @@ const Home = () => {
 							<ScheduleCardsWayA
 								key={scheduleWayA.message}
 								scheduleWayA={scheduleWayA}
+							/>
+						))}
+						{schedulesWayR?.map(scheduleWayR => (
+							<ScheduleCardsWayR
+								key={scheduleWayR.message}
+								scheduleWayR={scheduleWayR}
 							/>
 						))}
 					</div>
