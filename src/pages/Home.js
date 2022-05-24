@@ -45,14 +45,16 @@ const Home = () => {
 	// Recupération du nom des stations
 	useEffect(() => {
 		const getStationNames = async () => {
-			try {
-				const { data } = await axios.get(
-					`https://api-ratp.pierre-grimaud.fr/v4/stations/metros/${uniqueStationNumber}`,
-				);
-				setAllStationNames(data.result.stations);
-			} catch (err) {
-				console.log(err);
-			}
+      if (uniqueStationNumber !== 'default') {
+        try {
+          const { data } = await axios.get(
+            `https://api-ratp.pierre-grimaud.fr/v4/stations/metros/${uniqueStationNumber}`,
+          );
+          setAllStationNames(data.result.stations);
+        } catch (err) {
+          console.log(err);
+        };
+      };
 		};
 		getStationNames();
 	}, [uniqueStationNumber]);
@@ -78,7 +80,7 @@ const Home = () => {
 				} catch (err) {
 					console.log(err);
 				}
-			}
+			};
 		};
 		getSchedulesWayA();
 	}, [uniqueStationName]);
@@ -105,7 +107,10 @@ const Home = () => {
 			<div className="mainContainer">
 				<div className="container">
 					<form>
-						<select onChange={e => handleSubwayNumber(e)}>
+						<select
+							defaultValue={uniqueStationNumber}
+							onChange={e => handleSubwayNumber(e)}
+						>
 							<option value="default">Sélectionner une ligne...</option>
 							{filterOnlySubwayNumbers?.map(subwayNumber => (
 								<option value={subwayNumber} key={subwayNumber}>
@@ -114,7 +119,10 @@ const Home = () => {
 							))}
 						</select>
 						{viewableOption && (
-							<select onChange={e => handleStationName(e)}>
+							<select
+								defaultValue={uniqueStationName}
+								onChange={e => handleStationName(e)}
+							>
 								<option value="default">Sélectionner une station...</option>
 								{allStationNames?.map(stationName => (
 									<option value={stationName.name} key={stationName.name}>
