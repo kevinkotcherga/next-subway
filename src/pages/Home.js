@@ -57,13 +57,22 @@ const Home = () => {
 					<form>
 						<select onChange={e => handleSubwayNumber(e)}>
 							<option value="default">Sélectionner une ligne...</option>
-							{filterOnlySubwayNumbers.map(subwayNumber => (
+							{filterOnlySubwayNumbers?.map(subwayNumber => (
 								<option value={subwayNumber} key={subwayNumber}>
 									{subwayNumber}
 								</option>
 							))}
 						</select>
-						<select>test</select>
+						<select>
+							<option value="default" disabled hidden>
+								Sélectionner une station...
+							</option>
+							{allStationNames?.map(stationName => (
+								<option value={stationName.name} key={stationName.name}>
+									{stationName.name}
+								</option>
+							))}
+						</select>
 					</form>
 					<div className="results">
 						<p>Résultats</p>
