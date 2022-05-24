@@ -130,12 +130,14 @@ const Home = () => {
 							<ScheduleCardsWayA
 								key={scheduleWayA.message}
 								scheduleWayA={scheduleWayA}
+								className="scheduleCards"
 							/>
 						))}
 						{schedulesWayR?.map(scheduleWayR => (
 							<ScheduleCardsWayR
 								key={scheduleWayR.message}
 								scheduleWayR={scheduleWayR}
+								className="scheduleCards"
 							/>
 						))}
 					</div>

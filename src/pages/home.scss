@@ -23,6 +23,12 @@
         flex-direction: column;
         background-clip: border-box;
         background-color: white;
+        .scheduleCards {
+          padding: 0.5rem;
+          border-radius: 0.35rem;
+          margin-bottom: 1rem;
+          background-color: #91f545;
+        }
       }
     }
   }
