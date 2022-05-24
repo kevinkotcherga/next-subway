@@ -2,8 +2,16 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className='home'>
+      <div className='container'>
+        <form>
+          <select>test</select>
+          <select>test</select>
+        </form>
+        <div className='results'>
+          <p>Résultats</p>
+        </div>
+      </div>
     </div>
   );
 };
