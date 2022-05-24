@@ -16,17 +16,17 @@ https://nextsubway-7b41f.web.app/
 
 Début du projet à 14h20 
 
-1- Recherche de l'API sur Google en tapant "API RATP", après 5 minutes de comparaisons et d'analyses j'ai décidé d'utiliser l'API https://github.com/pgrimaud/horaires-ratp-api qui est simple et rapide à utiliser.
+1- Recherche de l'API sur Google en tapant "API RATP", après 5 minutes de comparaisons et d'analyses je décide d'utiliser l'API https://github.com/pgrimaud/horaires-ratp-api qui est simple et rapide à utiliser.
 
 2- Réflexion sur l'architecture du projet et de la mise en page de l'application et des composants pendant 5 min, sur papier.
 
-3- 15h50, après 1h30 l'application était fonctionnelle. Je suis passé à la création des messages d'erreurs quand les horaires ne s'affichent pas
+3- 15h50, après 1h30 l'application était fonctionnelle. Je suis passé à la création des messages d'erreurs quand les horaires ne s'affichent pas.
 
-4- J'ai mis en place le responsive design 
+4- Mise en place du responsive design.
 
-5- Réflexion sur l'utilisation du paquet `react-router-dom@6.3.0` pour gérer les paramètres du formulaire via l'url
+5- Réflexion sur l'utilisation du paquet `react-router-dom@6.3.0` pour gérer les paramètres du formulaire via l'url.
 
-6- 16h20, je découvre et mets en place le déploiement avec firebase hosting
+6- 16h20, découverte et mise en place du déploiement avec firebase hosting.
 
 7- 16h45 fin du projet, application déployée et fonctionnelle. J'aurais passé envion 2h20 sur le projet.
 
