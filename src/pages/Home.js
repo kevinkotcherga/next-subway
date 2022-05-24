@@ -5,8 +5,9 @@ import './home.scss';
 const Home = () => {
 	const [subwayStationNumber, setSubwayStationNumber] = useState([]);
 	const [uniqueStationNumber, setUniqueStationNumber] = useState('default');
-  const [allStationNames, setAllStationNames] = useState([]);
-  const [viewableOption, setViewableOption] = useState(false);
+  const [uniqueStationName, setUniqueStationName] = useState('default');
+	const [allStationNames, setAllStationNames] = useState([]);
+	const [viewableOption, setViewableOption] = useState(false);
 
 	// Récupération du numéro des stations de métro depuis l'API
 	useEffect(() => {
@@ -33,12 +34,12 @@ const Home = () => {
 			setUniqueStationNumber(e.target.value);
 		} catch (err) {
 			console.log(err);
-		};
-    setViewableOption(true);
+		}
+		setViewableOption(true);
 	};
 
 	// Recupération du nom des stations
-  useEffect(() => {
+	useEffect(() => {
 		const getStationNames = async () => {
 			try {
 				const { data } = await axios.get(
@@ -51,6 +52,15 @@ const Home = () => {
 		};
 		getStationNames();
 	}, [uniqueStationNumber]);
+
+	// Récupération du nom d'une station avec onChange
+	const handleStationName = e => {
+		try {
+			setUniqueStationName(e.target.value);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<div className="home">
@@ -65,18 +75,16 @@ const Home = () => {
 								</option>
 							))}
 						</select>
-            {viewableOption &&
-						<select>
-							<option value="default">
-								Sélectionner une station...
-							</option>
-							{allStationNames?.map(stationName => (
-								<option value={stationName.name} key={stationName.name}>
-									{stationName.name}
-								</option>
-							))}
-						</select>
-            }
+						{viewableOption && (
+							<select onChange={e => handleStationName(e)}>
+								<option value="default">Sélectionner une station...</option>
+								{allStationNames?.map(stationName => (
+									<option value={stationName.name} key={stationName.name}>
+										{stationName.name}
+									</option>
+								))}
+							</select>
+						)}
 					</form>
 					<div className="results">
 						<p>Résultats</p>
