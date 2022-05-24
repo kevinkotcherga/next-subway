@@ -1,6 +1,6 @@
 # README
 
-## Installer et lancement de l'application en local 
+## Installation et lancement de l'application en local 
 
 ```
 git clone git@github.com:kevinkotcherga/next-subway.git
