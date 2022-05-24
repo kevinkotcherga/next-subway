@@ -1,5 +1,6 @@
 .home {
   height: 100vh;
+  overflow-y: scroll;
   display: flex;
   background-color: #F3F5F8;
   .mainContainer {
@@ -9,7 +10,7 @@
     flex-direction: column;
     .container {
       gap: 1rem;
-      width: 50%;
+      width: 50vw;
       display: flex;
       margin-top: 5rem;
       flex-direction: column;
@@ -18,7 +19,7 @@
         border: 1px solid #E0E0E0;
         display: flex;
         padding: 1.5rem;
-        min-width: 20rem;
+        min-width: 20vw;
         border-radius: 0.3rem;
         flex-direction: column;
         background-clip: border-box;
@@ -32,6 +33,28 @@
         .error {
           background-color: #f00;
         }
+      }
+    }
+  }
+}
+
+// MEDIA QUERIES
+
+@media screen and (max-width: 1000px) {
+  .home {
+    .mainContainer {
+      .container {
+        width: 80vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home {
+    .mainContainer {
+      .container {
+        width: 90vw;
       }
     }
   }
