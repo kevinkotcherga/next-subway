@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 import './home.scss';
 
 const Home = () => {
-  const [subwayStationNumber, setSubwayStationNumber] = useState([]);
+	const [subwayStationNumber, setSubwayStationNumber] = useState([]);
+  const [uniqueStationNumber, setUniqueStationNumber] = useState('default');
 
 	// Récupération du numéro des stations de métro depuis l'API
-  useEffect(() => {
+	useEffect(() => {
 		const getSubwayStationNumbers = async () => {
 			try {
 				const { data } = await axios.get(
@@ -20,21 +21,32 @@ const Home = () => {
 		getSubwayStationNumbers();
 	}, []);
 
-  // Map des numéros de stations de métro pour ne récupérer que les nombres
-  const mapSubwayNames = subwayStationNumber.map(subwayName => subwayName.code);
-  const filterOnlySubwayNumbers = mapSubwayNames.filter(Number);
+	// Map des numéros de stations de métro pour ne récupérer que les nombres
+	const mapSubwayNames = subwayStationNumber.map(subwayName => subwayName.code);
+	const filterOnlySubwayNumbers = mapSubwayNames.filter(Number);
+
+	// Récupération du numéro d'une ligne de métro avec onChange
+	const handleSubwayNumber = (e) => {
+		try {
+			setUniqueStationNumber(e.target.value);
+		} catch (err) {
+			console.log(err);
+		};
+	};
 
 	return (
 		<div className="home">
 			<div className="mainContainer">
 				<div className="container">
 					<form>
-						<select>
-							<option>
+						<select onChange={e => handleSubwayNumber(e)}>
+							<option value="default">
 								Sélectionner une ligne...
 							</option>
 							{filterOnlySubwayNumbers.map(subwayNumber => (
-								<option value={subwayNumber} key={subwayNumber}>{subwayNumber}</option>
+								<option value={subwayNumber} key={subwayNumber}>
+									{subwayNumber}
+								</option>
 							))}
 						</select>
 						<select>test</select>
