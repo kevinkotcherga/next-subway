@@ -6,6 +6,7 @@ const Home = () => {
 	const [subwayStationNumber, setSubwayStationNumber] = useState([]);
 	const [uniqueStationNumber, setUniqueStationNumber] = useState('default');
   const [allStationNames, setAllStationNames] = useState([]);
+  const [viewableOption, setViewableOption] = useState(false);
 
 	// Récupération du numéro des stations de métro depuis l'API
 	useEffect(() => {
@@ -32,7 +33,8 @@ const Home = () => {
 			setUniqueStationNumber(e.target.value);
 		} catch (err) {
 			console.log(err);
-		}
+		};
+    setViewableOption(true);
 	};
 
 	// Recupération du nom des stations
@@ -63,8 +65,9 @@ const Home = () => {
 								</option>
 							))}
 						</select>
+            {viewableOption &&
 						<select>
-							<option value="default" disabled hidden>
+							<option value="default">
 								Sélectionner une station...
 							</option>
 							{allStationNames?.map(stationName => (
@@ -73,6 +76,7 @@ const Home = () => {
 								</option>
 							))}
 						</select>
+            }
 					</form>
 					<div className="results">
 						<p>Résultats</p>
