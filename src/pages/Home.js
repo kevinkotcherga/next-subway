@@ -4,7 +4,8 @@ import './home.scss';
 
 const Home = () => {
 	const [subwayStationNumber, setSubwayStationNumber] = useState([]);
-  const [uniqueStationNumber, setUniqueStationNumber] = useState('default');
+	const [uniqueStationNumber, setUniqueStationNumber] = useState('default');
+  const [allStationNames, setAllStationNames] = useState([]);
 
 	// Récupération du numéro des stations de métro depuis l'API
 	useEffect(() => {
@@ -26,13 +27,28 @@ const Home = () => {
 	const filterOnlySubwayNumbers = mapSubwayNames.filter(Number);
 
 	// Récupération du numéro d'une ligne de métro avec onChange
-	const handleSubwayNumber = (e) => {
+	const handleSubwayNumber = e => {
 		try {
 			setUniqueStationNumber(e.target.value);
 		} catch (err) {
 			console.log(err);
-		};
+		}
 	};
+
+	// Recupération du nom des stations
+  useEffect(() => {
+		const getStationNames = async () => {
+			try {
+				const { data } = await axios.get(
+					`https://api-ratp.pierre-grimaud.fr/v4/stations/metros/${uniqueStationNumber}`,
+				);
+				setAllStationNames(data.result.stations);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		getStationNames();
+	}, [uniqueStationNumber]);
 
 	return (
 		<div className="home">
@@ -40,9 +56,7 @@ const Home = () => {
 				<div className="container">
 					<form>
 						<select onChange={e => handleSubwayNumber(e)}>
-							<option value="default">
-								Sélectionner une ligne...
-							</option>
+							<option value="default">Sélectionner une ligne...</option>
 							{filterOnlySubwayNumbers.map(subwayNumber => (
 								<option value={subwayNumber} key={subwayNumber}>
 									{subwayNumber}
