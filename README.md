@@ -16,7 +16,7 @@ https://nextsubway-7b41f.web.app/
 
 Début du projet à 14h20 
 
-1- Recherche de l'API sur Google en tapant "API RATP", après 5 minutes de comparaisons et d'analyses je décide d'utiliser l'API https://github.com/pgrimaud/horaires-ratp-api qui est simple et rapide à utiliser.
+1- Recherche de l'API sur Google en tapant "API RATP", après 5 minutes de comparaisons et d'analyses je décide d'utiliser l'API https://github.com/pgrimaud/horaires-ratp-api qui est simple et rapide.
 
 2- Réflexion sur l'architecture du projet et de la mise en page de l'application et des composants pendant 5 min, sur papier.
 
