@@ -29,7 +29,14 @@ const Home = () => {
 			<div className="mainContainer">
 				<div className="container">
 					<form>
-						<select>test</select>
+						<select>
+							<option>
+								Sélectionner une ligne...
+							</option>
+							{filterOnlySubwayNumbers.map(subwayNumber => (
+								<option value={subwayNumber} key={subwayNumber}>{subwayNumber}</option>
+							))}
+						</select>
 						<select>test</select>
 					</form>
 					<div className="results">
