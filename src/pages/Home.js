@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import ScheduleCardsWayA from '../components/scheduleCardsWayA/ScheduleCardsWayA';
 import './home.scss';
 
 const Home = () => {
@@ -106,6 +107,12 @@ const Home = () => {
 					</form>
 					<div className="results">
 						<p>Résultats</p>
+						{schedulesWayA?.map(scheduleWayA => (
+							<ScheduleCardsWayA
+								key={scheduleWayA.message}
+								scheduleWayA={scheduleWayA}
+							/>
+						))}
 					</div>
 				</div>
 			</div>
