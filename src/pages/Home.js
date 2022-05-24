@@ -9,7 +9,8 @@ const Home = () => {
 	const [uniqueStationName, setUniqueStationName] = useState('default');
 	const [allStationNames, setAllStationNames] = useState([]);
 	const [viewableOption, setViewableOption] = useState(false);
-  const [schedulesWayA, setSchedulesWayA] = useState([]);
+	const [schedulesWayA, setSchedulesWayA] = useState([]);
+  const [schedulesWayR, setSchedulesWayR] = useState([]);
 
 	// Récupération du numéro des stations de métro depuis l'API
 	useEffect(() => {
@@ -64,7 +65,7 @@ const Home = () => {
 		}
 	};
 
-	// Recupération des horraires d'une station way A
+	// Recupération des horraires d'une station voie A
 	useEffect(() => {
 		const getSchedulesWayA = async () => {
 			if (uniqueStationName !== 'default') {
@@ -79,6 +80,23 @@ const Home = () => {
 			}
 		};
 		getSchedulesWayA();
+	}, [uniqueStationName]);
+
+	// Recupération des horraires d'une station voie R
+	useEffect(() => {
+		const getSchedulesWayR = async () => {
+			if (uniqueStationName !== 'default') {
+				try {
+					const { data } = await axios.get(
+						`https://api-ratp.pierre-grimaud.fr/v4/schedules/metros/${uniqueStationNumber}/${uniqueStationName}/R`,
+					);
+					setSchedulesWayR(data.result.schedules);
+				} catch (err) {
+					console.log(err);
+				}
+			}
+		};
+		getSchedulesWayR();
 	}, [uniqueStationName]);
 
 	return (
