@@ -34,7 +34,7 @@ Début du projet à 14h20
 
 ### Deux difficultés
 - Sur l'application modèle, lorsque l'on clique sur "Sélectionner une ligne..." après avoir séléctionner une station, le formulaire se remet à 0. J'ai passé trop de temps à réfléchir comment faire cette fonctionnalité et je suis donc passé à la suite pour ne pas perdre trop de temps.
-- J'ai compris l'utilité de react-router-dom@6.3.0 pour gérer les paramètres du formulaire via l'url mais je n'ai pas rapidement trouvé le moyen de l'installer, j'ai donc passé cette étape.
+- J'ai compris l'utilité de react-router-dom@6.3.0 pour gérer les paramètres du formulaire via l'url mais je n'ai pas rapidement trouvé le moyen d'utiliser cette fonctionnalité, j'ai donc passé cette étape.
 
 ### Deux réussites
 - Je suis satisfait d'avoir réussi à rendre l'application fonctionnelle sans trop de difficulté en 1h30.
